@@ -16,7 +16,7 @@ ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-app.config['SECRET_KEY']= 'd81b7b258f16e27c96a451e4'
+app.config['SECRET_KEY']= ''
 
 app.config['RECAPTCHA_PUBLIC_KEY']=''
 app.config['RECAPTCHA_PRIVATE_KEY']=''
