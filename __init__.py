@@ -18,8 +18,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SECRET_KEY']= 'd81b7b258f16e27c96a451e4'
 
-app.config['RECAPTCHA_PUBLIC_KEY']='6LenbpwbAAAAADketTMxDDHHe8boWcLozMomh-S1'
-app.config['RECAPTCHA_PRIVATE_KEY']='6LenbpwbAAAAAMfssgph0MgD3DswnfFQzgE8o6Gi'
+app.config['RECAPTCHA_PUBLIC_KEY']=''
+app.config['RECAPTCHA_PRIVATE_KEY']=''
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
