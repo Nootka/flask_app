@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Child{% endblock %}
+
+{% block content %}
+<div class="block">Home > <a href="{{url_for('relations.parents')}}"> market</a> >{{child.parent.name}} > {{ child.name }}</div>
+<div class="columns">
+	<div class="column">
+		{% if child.image_url %}
+		<figure>
+			<img src="{{child.image_url}}" alt="{{child.name}}">
+		</figure>
+		{% endif %}
+	</div>
+
+	<div class="column">
+		<h1 class="title">{{child.name}}</h1>
+		<a class="button bg-a8" href="{{url_for('relations.update_child', id=child.id)}}">Update</a>
+		<p>{{child.description}}</p>
+		<p>{{child.price}} € por {{child.unit.name}}</p>
+		<div class="block">
+			<form action="">
+				<label for="quantity">Quantity </label>
+  				<input class="input" type="number" id="quantity" name="quantity">
+  				<input class="button" type="submit" value="Add">
+				
+			
+			</form>
+
+		</div>
+	</div>
+</div>
+	
+	
+		
+	
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Parents{% endblock %}
+
+{% block content %}
+<div>
+	<h1 class="title color-a8">Parents</h1>
+		<div class="columns is-4">
+
+			{% for p in parents %}
+			<div class="column">
+				<div class="card">
+	
+				  <div class="card-content">
+				    <div class="media">
+			
+				      <div class="media-content">
+				        <p class="title is-4">{{p.name}}</p>
+				       
+				      </div>
+				    </div>
+
+				    <div class="content">
+				    	<ul>
+				    	{% for c in p.child %}
+				     		<li><a href="{{url_for('relations.child', id=c.id)}}">{{c.name}}</a></li>
+				    	{% endfor %}
+				    	</ul>
+				      
+				    </div>
+				  </div>
+
+				</div>
+			</div>
+				{% if loop.index is divisibleby(3) %}
+						</div><div class="columns is-4">
+				{% endif %}
+			{% endfor %}
+
+		</div>
+</div>
+
+{% endblock %}

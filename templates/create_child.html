@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %} Create Child{% endblock %}
+
+{% block content %}
+<div>
+	<h1 class="title">Create Child</h1>
+		<form method="POST" class="box bg-1 form-register color-a8" enctype="multipart/form-data">
+		{{ form.hidden_tag()}}
+		<div class="field">
+       		<label class="label color-a8">{{ form.name.label() }}</label>
+  			<div class="control">
+
+  				{{ form.name(class="input", placeholder="Child Name") }}
+  			</div>
+		</div>
+		
+		<div class="field">
+       		<label class="label color-a8">{{ form.parent.label() }}</label>
+  			<div class="control">
+				{{ form.parent(class="input", placeholder="Parent Name") }}
+  			</div>
+		</div>
+
+		<div class="field">
+       		<label class="label color-a8">{{ form.unit.label() }}</label>
+  			<div class="control">
+				{{ form.unit(class="input", placeholder="Parent Name") }}
+  			</div>
+		</div>
+
+		<div class="field">
+       		<label class="label color-a8">{{ form.image.label() }}</label>
+  			<div class="control">
+  				{{ form.image(class="input",type="file", placeholder="Image") }}
+  			</div>
+		</div>
+		
+		<div class="field">
+       		<label class="label color-a8">{{ form.description.label() }}</label>
+  			<div class="control">
+  				{{ form.description(class="textarea is-medium",rows="10", placeholder="Description") }}
+  			</div>
+		</div>
+
+		<div class="field">
+       		<label class="label color-a8">{{ form.price.label() }}</label>
+  			<div class="control">
+  				 {{ form.price(class="input", type="text", placeholder="Price") }}
+  			</div>
+		</div>
+	
+
+		
+            {{ form.submit(class="button is-primary") }}
+	</form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to parakeet web{% endblock %}
+
+{% block content %}
+  	<div class="columns is-mobile is-centered">
+  		<div class="column center-text">
+		    <h1 class="title">
+		      Welcome to Parakeet
+		    </h1>
+		    <h2 class="subtitle">
+		      beautiful site
+		    </h2>
+		    <a href="{{url_for('home')}}" class="button has-blue-background-color color-a8">Acheter</a>
+		</div>
+	</div>
+
+    <div class="columns is-centered">
+        <div class="column is-full">
+            <form  method="POST">
+                
+                        {{ form.hidden_tag()}}
+                        <div class="field is-grouped">
+                          <p class="control is-expanded">
+                           {{ form.search(class="input", placeholder="Search title or description") }}
+                          </p>
+                          <p class="control">
+                           
+                              {{ form.submit(class="button is-primary") }}
+                           
+                          </p>
+                        </div>
+                    
+            </form>
+        </div>
+    </div>
+
+    <div class="columns">
+        {% for child in childs %}
+        <div class="column is-one-quarter-desktop is-one-half-tablet">
+            <div class="card">
+                <figure class="image is-4by3">
+                    <img src="{{child.image_url}}" alt="{{child.name}}">
+                </figure>
+                <header class="card-header center-text">
+                    <h3 class="card-header-title">
+                      <a href="{{url_for('relations.child', id=child.id)}}">{{child.name}}</a>
+                    </h3>
+                    
+                  </header>
+                <div class="card-content  pr-1">
+                    <div class="content">
+                      {{child.description  | safe | truncate(50)}}
+                    </div>
+                </div>
+              <div class="card-footer p-2">
+                    <a class="tag is-primary" href="{{url_for('relations.parent',name=child.parent.name)}}"
+                    >
+                        {{child.parent.name}}
+                    </a>
+              </div>
+            </div>
+
+            
+        </div>
+            {% if loop.index is divisibleby(4) %}
+                </div><div class="columns is-4">
+            {% endif %}
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

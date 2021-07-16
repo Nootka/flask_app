@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/bulma.min.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/mycolors.css')}}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<title>{% block title %} {% endblock %}</title>
+</head>
+<body class="has-gray-background-color color-a8" >
+	<nav class="navbar has-light-blue-background-color px-5" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+   
+    <img src="{{url_for('static', filename='images/logo.svg')}}" alt="">
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu ml-5">
+    <div class="navbar-start">
+      <a class="navbar-item is-spaced" href="{{url_for('home')}}">
+        Home
+      </a>
+
+      {% for p in categories %}
+        <a class="navbar-item is-spaced" href="{{url_for('relations.parent', name=p.name)}}">{{p.name}}</a>
+      {% endfor %}
+
+      {% if current_user.is_authenticated %}
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Create
+        </a>
+
+        <div class="navbar-dropdown">
+
+          <a class="navbar-item" href="{{url_for('relations.create_parent')}}">
+            Create Category
+          </a>
+          <a class="navbar-item" href="{{url_for('relations.create_child')}}">
+            Create Child
+          </a>
+          
+        </div>
+      </div>
+      {% endif %}
+    
+      
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        {% if current_user.is_authenticated %}
+         <div class="buttons">
+          <a class="button bg-a8" href="#">
+                <strong>Welcome, {{current_user.name}}</strong>
+              </a>
+              <a class="button bg-a8" href="{{url_for('logout_page')}}">
+                <strong>Log Out</strong>
+              </a>
+          </div>
+        {% else %}
+            <div class="buttons">
+              <a class="button bg-a8" href="{{url_for('register_page')}}">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button bg-a8" href="{{url_for('login_page')}}">
+                Log in
+              </a>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+	<div class="container is-max-desktop pt-5">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+            <div class="notification is-{{category}} p-2 my-2">
+              <button class="delete"></button>
+                {{message}}
+              </div>
+                <div >
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+		
+			{% block content %}
+
+			{% endblock %}
+
+		
+	</div>
+
+  <footer class="footer bg-a3">
+  <div class="content has-text-centered">
+    <a href="{{url_for('colors_page')}}">Colors</a>
+    <a href="#">Sitemap</a>
+  </div>
+</footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+    const $notification = $delete.parentNode;
+
+    $delete.addEventListener('click', () => {
+      $notification.parentNode.removeChild($notification);
+    });
+  });
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Child{% endblock %}
+
+{% block content %}
+<div>
+	<h1 class="title">Update Child</h1>
+		<form method="POST" class="box bg-1 form-register color-a8" enctype="multipart/form-data">
+		{{ form.hidden_tag()}}
+		<div class="field">
+       		<label class="label color-a8">{{ form.name.label() }}</label>
+  			<div class="control">
+
+  				{{ form.name(class="input", value=child_to_update.name) }}
+  			</div>
+		</div>
+		
+		<div class="field">
+       		<label class="label color-a8">{{ form.parent.label() }}</label>
+
+        <div class="select">
+          <select name="parent">
+            {% for p in form.parent.choices %}
+              <option value="{{p[0]}}"
+              {% if p[1] == child_to_update.parent.name %}
+                selected
+              {% endif %}>
+              {{p[1]}}
+            </option>
+            {% endfor %}
+           
+            
+          </select>
+        </div>
+
+		</div>
+
+		<div class="field">
+       		<label class="label color-a8">{{ form.unit.label() }}</label>
+           <div class="select">
+          <select name="unit">
+            {% for u in form.unit.choices %}
+              <option value="{{u[0]}}"
+              {% if u[1] == child_to_update.unit.name %}
+                selected
+              {% endif %}>
+              {{u[1]}}
+            </option>
+            {% endfor %}
+           
+            
+          </select>
+        </div>
+  		
+		</div>
+
+    <div  class="field is-horizontal">
+                       
+      <div class="field-body">
+        <figure class="image is-128x128 mr-3">
+          <img src="{{child_to_update.image_url}}" alt="">
+        </figure>
+    		<div class="field">
+           		<label class="label color-a8">Change Image?</label>
+      			<div class="control">
+      				{{ form.image(class="input",type="file", value=child_to_update.image_url) }}
+      			</div>
+    		</div>
+      </div>
+    </div>
+		
+		<div class="field">
+       		<label class="label color-a8">{{ form.description.label() }}</label>
+  			<div class="control">
+          <textarea class="textarea is-medium" name="description" id="" cols="30" rows="10">{{child_to_update.description}}</textarea>
+  				
+  			</div>
+		</div>
+
+		<div class="field">
+       		<label class="label color-a8">{{ form.price.label() }}</label>
+  			<div class="control">
+  				 {{ form.price(class="input", type="text", value=child_to_update.price) }}
+  			</div>
+		</div>
+	
+
+		
+            {{ form.submit(class="button is-primary") }}
+	</form>
+
+</div>
+
+{% endblock %}

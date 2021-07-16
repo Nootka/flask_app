@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Users{% endblock %}
+
+{% block content %}
+<div>
+	<h1 class="title">Results for {{search_string}}</h1>
+	  <div class="columns">
+        {% for child in results %}
+        <div class="column is-one-quarter-desktop is-one-half-tablet">
+            <div class="card">
+                <figure class="image is-4by3">
+                    <img src="{{child.image_url}}" alt="{{child.name}}">
+                </figure>
+                <header class="card-header center-text">
+                    <h3 class="card-header-title">
+                      <a href="{{url_for('relations.child', id=child.id)}}">{{child.name}}</a>
+                    </h3>
+                    
+                  </header>
+                <div class="card-content  pr-1">
+                    <div class="content">
+                      {{child.description  | safe | truncate(50)}}
+                    </div>
+                </div>
+              <div class="card-footer p-2">
+                    <a class="tag is-primary" href="{{url_for('relations.parent', id=child.parent.id)}}">{{child.parent.name}}</a>
+              </div>
+            </div>
+
+            
+        </div>
+            {% if loop.index is divisibleby(4) %}
+                </div><div class="columns is-4">
+            {% endif %}
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

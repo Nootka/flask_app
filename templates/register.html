@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Register Form {% endblock %}
+
+{% block content %}
+<div>
+	<h1 class="box bg-1 title color-a8">Please create your Account</h1>
+	<form method="POST" class="box bg-1 form-register color-a8" >
+		{{ form.hidden_tag()}}
+		<div class="field">
+       		<label class="label color-a8">{{ form.name.label() }}</label>
+  			<div class="control">
+
+  				{{ form.name(class="input", placeholder="User Name") }}
+  			</div>
+		</div>
+		<div class="field">
+       		<label class="label color-a8">{{ form.email_address.label() }}</label>
+  			<div class="control">
+  				{{ form.email_address(class="input",type="email", placeholder="Email Address") }}
+  			</div>
+		</div>
+		<div class="field">
+       		<label class="label color-a8">{{ form.password1.label() }}</label>
+  			<div class="control">
+  				 {{ form.password1(class="input", type="password", placeholder="Password") }}
+  			</div>
+		</div>
+		 
+		 <div class="field">
+       		<label class="label color-a8"> {{ form.password2.label() }}</label>
+  			<div class="control">
+  				 {{ form.password2(class="input",type="password", placeholder="Confirm Password") }}
+  			</div>
+		</div>
+         <div class="field">
+          <label class="label color-a8"> recaptcha</label>
+        <div class="control">
+           {{ form.recaptcha }}
+        </div>
+
+    </div>
+		
+            {{ form.submit(class="button is-primary") }}
+	</form>
+</div>
+{% endblock %}
