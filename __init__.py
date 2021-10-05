@@ -30,17 +30,17 @@ engine = create_engine(
     poolclass=StaticPool
 )
 
-app.config['SECRET_KEY']= 'd81b7b258f16e27c96a451e4'
+app.config['SECRET_KEY']= ''
 
-app.config['RECAPTCHA_PUBLIC_KEY']='6LenbpwbAAAAADketTMxDDHHe8boWcLozMomh-S1'
-app.config['RECAPTCHA_PRIVATE_KEY']='6LenbpwbAAAAAMfssgph0MgD3DswnfFQzgE8o6Gi'
+app.config['RECAPTCHA_PUBLIC_KEY']='-'
+app.config['RECAPTCHA_PRIVATE_KEY']=''
 
 #app.config.from_pyfile('config.cfg')
 
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'emanuelapetri@gmail.com'
-app.config['MAIL_PASSWORD'] = 'kpcayzbylwimwxcp'
+app.config['MAIL_SERVER']=''
+app.config['MAIL_PORT'] = 
+app.config['MAIL_USERNAME'] = ''
+app.config['MAIL_PASSWORD'] = ''
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
