@@ -14,8 +14,7 @@ class User(db.Model, UserMixin):
 	date_created = db.Column(db.DateTime,default=datetime.now)
 	password_hash = db.Column(db.String(60), nullable=False)
 	email_address = db.Column(db.String(50), nullable=False, unique=True)
-
-	#products = db.relationship('Product', backref='owned_user', lazy=True)
+	email_confirmed = db.Column(db.Boolean, default=False)
 
 	@property
 	def password(self):
@@ -33,34 +32,6 @@ class User(db.Model, UserMixin):
 	#def __repr__(self):
 		#return '<User %r>' % self.name
 
-class Costumer(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	first_name = db.Column(db.String(50), nullable=False)
-	last_name = db.Column(db.String(50), nullable=False)
-	address = db.Column(db.String(500),nullable=False)
-	city = db.Column(db.String(50),nullable=False)
-	postcode = db.Column(db.String(50),nullable=False)
-	email = db.Column(db.String(50),nullable=False, unique= True)
-	orders = db.relationship('Order', backref='costumer', lazy=True)
-
-#crear una tabla en la bd sin clase
-# porque la relacion entre product y order es mas compleja: many-to-many
-order_product = db.Table('order_product',
-    db.Column('order_id', db.Integer, db.ForeignKey('order.id'), primary_key=True),
-    db.Column('child_id', db.Integer, db.ForeignKey('child.id'), primary_key=True)
-    )
-
-class Order(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	order_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-	shipped_date = db.Column(db.DateTime)
-	delivered_date = db.Column(db.DateTime)
-	coupon = db.Column(db.String(50))
-	costumer_id = db.Column(db.Integer, db.ForeignKey('costumer.id'), nullable=False)
-
-	products = db.relationship('Child', secondary='order_product')
-
-
 class Parent(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(500))
@@ -74,16 +45,29 @@ class Unit(db.Model):
 	name = db.Column(db.String(500))
 	child=db.relationship('Child', backref='unit')
 
+class PlaceCoordinates(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(200))
+	latitude=db.Column(db.String(500))
+	longitude=db.Column(db.String(500))
+	child=db.relationship('Child', backref='place_coordinates')
+
+	def __repr__(self):
+		return f'Item {self.name}'
 		
 class Child(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(500))
 	parent_id=db.Column(db.Integer(), db.ForeignKey('parent.id'))
 	unit_id=db.Column(db.Integer(), db.ForeignKey('unit.id'))
+	placecoordinates_id=db.Column(db.Integer(), db.ForeignKey('place_coordinates.id'))
 	image_url= db.Column(db.String(500))
 	description=description = db.Column(db.Text)
-	price=db.Column(db.Integer)
-
+	child_date_created = db.Column(db.DateTime,default=datetime.now)
+	child_date_updated = db.Column(db.DateTime)
+	
 	def __repr__(self):
 		return f'Item {self.name}'
+
+
 

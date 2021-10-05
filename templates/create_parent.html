@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %} Create Parent{% endblock %}
+{% block title %}Créer nouvelle Categorie{% endblock %}
 
 {% block content %}
 <div>
-	<h1 class="title">Create Product</h1>
+	<h1 class="title">{{ form.name.label() }}</h1>
 		<form method="POST" class="box bg-1 form-register color-a8" enctype="multipart/form-data">
 		{{ form.hidden_tag()}}
 		<div class="field">
+			<div>{{form[2]}}</div>
        		<label class="label color-a8">{{ form.name.label() }}</label>
   			<div class="control">
 
-  				{{ form.name(class="input", placeholder="Parent Name") }}
+  				{{ form.name(class="input", placeholder="Nom") }}
   			</div>
 		</div>
 		
-            {{ form.submit(class="button is-primary") }}
+            {{ form.submit(class="button is-primary", value="Ajouter") }}
 	</form>
 
 </div>

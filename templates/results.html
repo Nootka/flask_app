@@ -8,23 +8,23 @@
 	  <div class="columns">
         {% for child in results %}
         <div class="column is-one-quarter-desktop is-one-half-tablet">
-            <div class="card">
-                <figure class="image is-4by3">
+            <div class="card card-parakeet">
+                <figure class="image is-4by5">
                     <img src="{{child.image_url}}" alt="{{child.name}}">
                 </figure>
                 <header class="card-header center-text">
                     <h3 class="card-header-title">
-                      <a href="{{url_for('relations.child', id=child.id)}}">{{child.name}}</a>
+                      <a href="{{url_for('relations.child', name=child.name)}}">{{child.name}}</a>
                     </h3>
                     
                   </header>
-                <div class="card-content  pr-1">
+                <div class="card-content pr-1">
                     <div class="content">
                       {{child.description  | safe | truncate(50)}}
                     </div>
                 </div>
               <div class="card-footer p-2">
-                    <a class="tag is-primary" href="{{url_for('relations.parent', id=child.parent.id)}}">{{child.parent.name}}</a>
+                    <a class="tag is-primary" href="{{url_for('relations.parent', name=child.parent.name)}}">{{child.parent.name}}</a>
               </div>
             </div>
 

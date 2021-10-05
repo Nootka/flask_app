@@ -1,7 +1,7 @@
 .is-transparent{background-color:transparent !important; color: white}
 nav.nav-links-white a {color: white !important}
 nav.nav-links-black a {color: black !important}
-.has-gray-background-color a:hover{background-color:transparent !important; color: white}
+.has-gray-background-color .navbar-menu a.navbar-item:hover{background-color:transparent !important; color: white}
 .center-text{text-align: center}
 .p-01{padding:0.1rem !important}
 .custom-file-upload {
@@ -12,6 +12,8 @@ nav.nav-links-black a {color: black !important}
 }
 footer a{color: #0b393b;}
 a:hover{}
+
+.ver{border: 1px solid red;}
 
 .color-1 {color: #0b393b;}
 .bg-1{background-color:#0b393b !important;}
@@ -63,22 +65,22 @@ a:hover{}
 
 /* Colors */
 .has-fuchsia-background-color {
-	background-color: #6e116a;;
+	background-color: #6e116a;
 }
 .has-fuchsia-color {
-	color: #6e116a;;
+	color: #6e116a;
 }
 .has-blue-background-color {
-	background-color: #116a6e;;
+	background-color: #116a6e;
 }
 .has-blue-color {
-	color: #116a6e;;
+	color: #116a6e;
 }
 .has-olive-background-color {
-	background-color: #6a6e11;;
+	background-color: #6a6e11;
 }
 .has-olive-color {
-	color: #6a6e11;;
+	color: #6a6e11;
 }
 
 .color-tet-2 {color: #250b3b;}

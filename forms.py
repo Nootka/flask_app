@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField, SubmitField, TextField, TextAreaField, IntegerField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, TextField, TextAreaField, IntegerField, FloatField, SelectField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from flask_app.models import User
 from flask_wtf.file import FileField, FileRequired
@@ -31,23 +31,32 @@ class LoginForm(FlaskForm):
 
 
 class ParentForm(FlaskForm):
-	name = StringField(label='parent Name', validators=[DataRequired()])
+	name = StringField(label='Dinastie', validators=[DataRequired()])
 	submit = SubmitField(label='Create')
 
 class UnitForm(FlaskForm):
-	name = StringField(label='Unit Name', validators=[DataRequired()])
+	name = StringField(label='Langue', validators=[DataRequired()])
 	submit = SubmitField(label='Create')
 
+
 class ChildForm(FlaskForm):
-	name = StringField(label='Name', validators=[DataRequired()])
+	name = StringField(label='Prenom', validators=[DataRequired()])
 	image =FileField(label='Image')
-	parent =SelectField(u'Group', coerce=int)
-	unit =SelectField(u'Unit', coerce=int)
-	description = TextAreaField(label='Description')
-	price = IntegerField(label='Price')
+	parent =SelectField(u'Famille', coerce=int)
+	unit =SelectField(u'Langue', coerce=int)
+	place_coordinates=SelectField(u'Lieu de naissance', coerce=int)
+	description = TextAreaField(label='Biographie')
+	#price = IntegerField(label='Price')
 	submit = SubmitField(label='Create')
 
 class ChildSearchForm(FlaskForm):
 	parent = SelectField(u'Group', coerce=int)
 	search = StringField(label='Name')
 	submit = SubmitField(label='Search')
+
+class PlaceForm(FlaskForm):
+	name = StringField(label='Name', validators=[DataRequired()])
+	latitude = FloatField(label='Latitude', validators=[DataRequired()])
+	longitude = FloatField(label='Longitude', validators=[DataRequired()])
+	submit = SubmitField(label='Create Place')
+

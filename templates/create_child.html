@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %} Create Child{% endblock %}
+{% block title %}Ajouter un empereur{% endblock %}
 
 {% block content %}
 <div>
-	<h1 class="title">Create Child</h1>
+	<h1 class="title">Empereur</h1>
 		<form method="POST" class="box bg-1 form-register color-a8" enctype="multipart/form-data">
 		{{ form.hidden_tag()}}
 		<div class="field">
@@ -23,11 +23,22 @@
 		</div>
 
 		<div class="field">
-       		<label class="label color-a8">{{ form.unit.label() }}</label>
+       		<label class="label color-a8">{{ form.place_coordinates.label() }}</label>
   			<div class="control">
-				{{ form.unit(class="input", placeholder="Parent Name") }}
+				{{ form.place_coordinates(class="input", placeholder="Lieu de naissance") }}
   			</div>
 		</div>
+
+
+
+		<div class="field">
+       		<label class="label color-a8">{{ form.unit.label() }}</label>
+  			<div class="control">
+				{{ form.unit(class="input", placeholder="Langue") }}
+  			</div>
+		</div>
+
+
 
 		<div class="field">
        		<label class="label color-a8">{{ form.image.label() }}</label>
@@ -43,12 +54,7 @@
   			</div>
 		</div>
 
-		<div class="field">
-       		<label class="label color-a8">{{ form.price.label() }}</label>
-  			<div class="control">
-  				 {{ form.price(class="input", type="text", placeholder="Price") }}
-  			</div>
-		</div>
+
 	
 
 		

@@ -23,7 +23,7 @@
 				    <div class="content">
 				    	<ul>
 				    	{% for c in p.child %}
-				     		<li><a href="{{url_for('relations.child', id=c.id)}}">{{c.name}}</a></li>
+				     		<li><a href="{{url_for('relations.child', name=c.name)}}">{{c.name}}</a></li>
 				    	{% endfor %}
 				    	</ul>
 				      

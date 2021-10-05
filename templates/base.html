@@ -4,11 +4,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="{{url_for('static', filename='css/bulma.min.css')}}">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/mycolors.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/parakeet.css')}}">
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 	<title>{% block title %} {% endblock %}</title>
 </head>
 <body class="has-gray-background-color color-a8" >
-	<nav class="navbar has-light-blue-background-color px-5" role="navigation" aria-label="main navigation">
+	<nav id="navbarapp" class="navbar has-light-blue-background-color px-5" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
    
     <img src="{{url_for('static', filename='images/logo.svg')}}" alt="">
@@ -29,21 +30,31 @@
       {% for p in categories %}
         <a class="navbar-item is-spaced" href="{{url_for('relations.parent', name=p.name)}}">{{p.name}}</a>
       {% endfor %}
+        <a class="navbar-item is-spaced" href="{{url_for('geomap.geomap_page')}}">
+        Lieus de naissance
+      </a>
 
       {% if current_user.is_authenticated %}
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          Create
+          Créer de contenu
         </a>
 
         <div class="navbar-dropdown">
 
-          <a class="navbar-item" href="{{url_for('relations.create_parent')}}">
-            Create Category
+          <a class="navbar-item parakeet-hover" href="{{url_for('relations.create_parent')}}">
+            Ajouter une dinastie
           </a>
-          <a class="navbar-item" href="{{url_for('relations.create_child')}}">
-            Create Child
+            <a class="navbar-item parakeet-hover" href="{{url_for('relations.create_unit')}}">
+            Ajouter une langue
           </a>
+          <a class="navbar-item parakeet-hover" href="{{url_for('relations.create_child')}}">
+            Ajouter un empereur
+          </a>
+            <a class="navbar-item parakeet-hover" href="{{url_for('geomap.create_place')}}">
+            Ajouter un lieu
+          </a>
+          
           
         </div>
       </div>
@@ -56,7 +67,8 @@
       <div class="navbar-item">
         {% if current_user.is_authenticated %}
          <div class="buttons">
-          <a class="button bg-a8" href="#">
+            
+                <a class="button bg-a8" href="{{url_for('relations.profile', id=current_user.id)}}">
                 <strong>Welcome, {{current_user.name}}</strong>
               </a>
               <a class="button bg-a8" href="{{url_for('logout_page')}}">
@@ -80,21 +92,22 @@
 </nav>
 
 	<div class="container is-max-desktop pt-5">
+    
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
           {% for category, message in messages %}
-            <div class="notification is-{{category}} p-2 my-2">
+            <div class="notification is-{{category}} p-2 my-2 ">
               <button class="delete"></button>
                 {{message}}
-              </div>
-                <div >
+            </div>
+ 
           {% endfor %}
       {% endif %}
     {% endwith %}
 		
 			{% block content %}
-
-			{% endblock %}
+        
+      {% endblock %}
 
 		
 	</div>
@@ -102,11 +115,20 @@
   <footer class="footer bg-a3">
   <div class="content has-text-centered">
     <a href="{{url_for('colors_page')}}">Colors</a>
-    <a href="#">Sitemap</a>
+    <a href="/sitemap.xml">Sitemap</a>
   </div>
 </footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js">  </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  
+{% block scripts %}
   <script>
+
+$('.navbar-burger').click(function() {
+  $('#navbarBasicExample, .navbar-burger').toggleClass('is-active');
+});
+
     document.addEventListener('DOMContentLoaded', () => {
   (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
     const $notification = $delete.parentNode;
@@ -117,5 +139,8 @@
   });
 });
   </script>
+{% endblock %}
+
+
 </body>
 </html>

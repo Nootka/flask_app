@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<div>
+	<h1 class="title">Cart</h1>
+	<table class="table is-fullwidth">	
+		<thead>
+			<tr>
+					<th>Imagen</th>	
+					<th>Product</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					<th>Total</th>	
+			</tr>	
+		</thead>
+		<tbody>	
+				<tr>
+				    <td>
+				    	<figure class="image is-64x64">
+				    	<img src="	" alt="">	
+				    		</figure>
+					</td>
+					<td>
+					    <a :href="product.url">[[product_id]]</a>
+					</td>
+					<td>
+							ProduitQuantity
+					</td>
+					<td>
+							Unit Price
+					</td>	
+					<td>
+							Total Price
+					</td>				
+				</tr>	
+		
+		</tbody>
+
+		<tfoot>	
+			  <tr>
+	      <th><abbr title="Position">Pos</abbr></th>
+	      <th>Team</th>
+	      <th><abbr title="Played">Pld</abbr></th>
+	      <th><abbr title="Won">W</abbr></th>
+	      <th><abbr title="Drawn">D</abbr></th>
+  		</tr>
+		</tfoot>	
+	</table>
+
+</div>
+
+{% endblock %}

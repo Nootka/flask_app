@@ -1,0 +1,41 @@
+body{
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.container{
+	flex-grow: 1;
+	width: 90vw;
+	margin-bottom: 1em;
+}
+
+.card-parakeet .card-content{
+	min-height: 7em;
+	padding: 1.2rem;
+}
+.card-parakeet img, .empereur-img{
+	object-fit: cover;
+	object-position: top;
+}
+.card-parakeet .tag{
+	background-color:#0b393b !important;
+}
+.card-parakeet a.tag:hover{
+	background-color: #116a6e !important;
+	text-decoration: none;
+}
+.parakeet-edit-image{
+	object-fit: scale-down;
+	object-position: top;
+}
+
+.parakeet-hover:hover{
+	color: #6a6e11 !important;
+
+}
+a.bg-a8:hover{
+	border: 1px solid #486b6c !important;
+	background-color: #486b6c !important;
+	color: #e1e6e6;
+}

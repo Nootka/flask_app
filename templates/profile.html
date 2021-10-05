@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+Welcome, {{current_user.name}}<br>
+Votre mail est : {{ current_user.email_address}}<br>
+
+{% endblock %}

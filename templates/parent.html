@@ -5,17 +5,25 @@
 {% block content %}
 <div class="block">Home >  {{ parent.name }}</div>
 
-		<h1 class="title">{{parent.name}}</h1>
+<div class="is-flex is-justify-content-space-between">
+    <h1 class="title">{{parent.name}}</h1>
+
+        {% if current_user.is_authenticated %}
+            <a class="button bg-a8" href="{{url_for('relations.update_parent', id=parent.id)}}">Editer</a>
+        {% endif %}
+</div>
+		
+
 		<div class="columns">
         {% for child in parent.child %}
         <div class="column is-one-quarter-desktop is-one-half-tablet">
-            <div class="card">
-                <figure class="image is-4by3">
+            <div class="card card-parakeet">
+                <figure class="image is-4by5">
                     <img src="{{child.image_url}}" alt="{{child.name}}">
                 </figure>
                 <header class="card-header center-text">
                     <h3 class="card-header-title">
-                      <a href="{{url_for('relations.child', id=child.id)}}">{{child.name}}</a>
+                      <a href="{{url_for('relations.child', name=child.name)}}">{{child.name}}</a>
                     </h3>
                     
                   </header>
@@ -35,6 +43,7 @@
                 </div><div class="columns is-4">
             {% endif %}
         {% endfor %}
+
     </div>
 		
 
